@@ -1,0 +1,117 @@
+:root {
+  /* Lumina Shield Color Palette */
+  --bg-primary: #fef7ff;
+  --bg-secondary: #f9f1ff;
+  --accent-soft: #ffedeb;
+  --primary-deep: #5300b7;
+  --primary-glow: #6d28d9;
+  --text-main: #1d1a24;
+  --text-muted: #4a4455;
+  --success: #00687a;
+  --warning: #7d4e00;
+  --error: #ba1a1a;
+  --white: #ffffff;
+  
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --shadow-soft: 0px 12px 32px rgba(29, 26, 36, 0.04);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  color: var(--primary-deep);
+}
+
+.app-container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.header p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.sanctuary-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.upload-zone {
+  border: 2px dashed var(--bg-secondary);
+  border-radius: var(--radius-md);
+  padding: 3rem 1rem;
+  text-align: center;
+  background: var(--bg-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-zone:hover {
+  background: var(--accent-soft);
+  border-color: var(--primary-glow);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-deep), var(--primary-glow));
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(83, 0, 183, 0.2);
+}
+
+.risk-panel {
+  margin-top: 1rem;
+}
+
+.risk-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.risk-low { background: #e0f2f1; color: var(--success); }
+.risk-med { background: #fff3e0; color: var(--warning); }
+.risk-high { background: #ffebee; color: var(--error); }
