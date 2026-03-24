@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from services.risk_analyzer import RiskAnalyzer
 
-app = FastAPI(title="Aya Shield API")
+app = FastAPI(title="Kini API")
 analyzer = RiskAnalyzer()
 
 # Enable CORS for the React frontend

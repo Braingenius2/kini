@@ -1,14 +1,14 @@
-# Aya-Shield: The Digital Sanctuary for Women Sellers
+# Kini: The Digital Sanctuary for Women Sellers
 
 **Pillar:** Digital Inclusion (3MTT NextGen Knowledge Showcase)
 
-**Live Demo Link:** [https://Braingenius2.github.io/aya-shield/](https://Braingenius2.github.io/aya-shield/)
+**Live Demo Link:** [https://Braingenius2.github.io/kini/](https://Braingenius2.github.io/kini/)
 
 ## The Problem (Challenge)
 Women micro-entrepreneurs in Nigeria overwhelmingly use social media for business (WhatsApp, Instagram, Facebook). However, they lack the same security infrastructure and "safety buffers" as formal e-commerce platforms. A single "fake overpayment" scam or "advance-fee" trick can wipe out a week's earnings and cause significant emotional distress.
 
 ## The Solution (One-Page Brief)
-Aya-Shield is a **Digital Sanctuary** for these sellers. It acts as an "External Second Opinion"—providing a low-friction way to validate suspicious messages before responding. 
+Kini is a **Digital Sanctuary** for these sellers. It acts as an "External Second Opinion"—providing a low-friction way to validate suspicious messages before responding. 
 
 ### Why Aya Shield?
 1. **Vertical Focus**: Optimized specifically for the nuances of Nigerian social-commerce scams.

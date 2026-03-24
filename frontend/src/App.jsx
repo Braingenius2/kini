@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="app-container">
       <header className="header">
-        <h1>Aya Shield</h1>
+        <h1>Kini</h1>
         <p>Your Digital Selling Sanctuary</p>
       </header>
 
