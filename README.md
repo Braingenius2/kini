@@ -2,6 +2,8 @@
 
 **Pillar:** Digital Inclusion (3MTT NextGen Knowledge Showcase)
 
+**Live Demo Link:** [https://Braingenius2.github.io/aya-shield/](https://Braingenius2.github.io/aya-shield/)
+
 ## The Problem (Challenge)
 Women micro-entrepreneurs in Nigeria overwhelmingly use social media for business (WhatsApp, Instagram, Facebook). However, they lack the same security infrastructure and "safety buffers" as formal e-commerce platforms. A single "fake overpayment" scam or "advance-fee" trick can wipe out a week's earnings and cause significant emotional distress.
 
