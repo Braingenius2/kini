@@ -36,6 +36,14 @@ class RiskAnalyzer:
         }
 
     def analyze(self, text: str):
+        if not text or not text.strip():
+            return {
+                "risk_level": "LOW",
+                "score": 0,
+                "flags": [],
+                "analysis": "No text provided for analysis."
+            }
+
         detected_flags = []
         risk_score = 0
         

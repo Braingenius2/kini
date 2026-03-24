@@ -5,19 +5,35 @@ function App() {
   const [scanResult, setScanResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleScan = () => {
+  const [inputText, setInputText] = useState('');
+
+  const handleScan = async (type = 'text') => {
+    if (type === 'text' && !inputText.trim()) {
+      alert("Please paste some text to scan.");
+      return;
+    }
+
     setLoading(true);
-    // Mimicking analysis
-    setTimeout(() => {
-      setScanResult({
-        risk: 'MEDIUM',
-        score: 65,
-        flags: ['Urgent Tone', 'Off-platform Request'],
-        analysis: 'The buyer is using high-pressure language typical of advance-fee fraud.',
-        suggestion: 'Ask for verification before proceeding.'
-      });
+    try {
+      let response;
+      if (type === 'text') {
+        const url = `http://localhost:8000/scan/text?content=${encodeURIComponent(inputText)}`;
+        response = await fetch(url, { method: 'POST' });
+      } else {
+        // For the demo "Upload" button, we'll hit the /scan/image endpoint 
+        // which currently returns a mock analysis of a common scam screenshot
+        response = await fetch('http://localhost:8000/scan/image', { method: 'POST' });
+      }
+
+      if (!response.ok) throw new Error('Network response was not ok');
+      const data = await response.json();
+      setScanResult(data);
+    } catch (error) {
+      console.error("Scan failed:", error);
+      alert("Could not connect to the Kini Security Engine. Make sure the backend is running.");
+    } finally {
       setLoading(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -28,7 +44,7 @@ function App() {
       </header>
 
       <main className="sanctuary-card">
-        <div className="upload-zone" onClick={handleScan}>
+        <div className="upload-zone" onClick={() => handleScan('image')}>
           <Camera size={48} color="#6d28d9" style={{ marginBottom: '1rem' }} />
           <h3>Upload Chat Screenshot</h3>
           <p>We'll look for scams and red flags</p>
@@ -39,6 +55,8 @@ function App() {
         <textarea 
           placeholder="Paste suspicious text here..."
           className="input-text"
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
           style={{ 
             width: '100%', 
             minHeight: '120px', 
