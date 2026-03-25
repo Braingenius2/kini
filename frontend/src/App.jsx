@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Camera, Shield, MessageSquare, AlertTriangle } from 'lucide-react';
+import { analyzeText } from './utils/analyzer';
 
 function App() {
   const [scanResult, setScanResult] = useState(null);
   const [loading, setLoading] = useState(false);
-
   const [inputText, setInputText] = useState('');
 
   const handleScan = async (type = 'text') => {
@@ -14,23 +14,32 @@ function App() {
     }
 
     setLoading(true);
+    
+    // Perform immediate local analysis (Zero-Server fallback)
+    const localResult = type === 'text' 
+      ? analyzeText(inputText)
+      : analyzeText("I accidentally sent 200k more than the price. Please refund the balance to my brother's account ASAP.");
+
     try {
       let response;
       if (type === 'text') {
         const url = `http://localhost:8000/scan/text?content=${encodeURIComponent(inputText)}`;
         response = await fetch(url, { method: 'POST' });
       } else {
-        // For the demo "Upload" button, we'll hit the /scan/image endpoint 
-        // which currently returns a mock analysis of a common scam screenshot
         response = await fetch('http://localhost:8000/scan/image', { method: 'POST' });
       }
 
-      if (!response.ok) throw new Error('Network response was not ok');
-      const data = await response.json();
-      setScanResult(data);
+      if (response.ok) {
+        const data = await response.json();
+        setScanResult(data);
+      } else {
+        // Backend not found (ideal for Showcase demo on GitHub Pages)
+        setScanResult(localResult);
+      }
     } catch (error) {
-      console.error("Scan failed:", error);
-      alert("Could not connect to the Kini Security Engine. Make sure the backend is running.");
+      // Offline mode
+      console.log("Using internal Kini engine (Offline Mode)");
+      setScanResult(localResult);
     } finally {
       setLoading(false);
     }
