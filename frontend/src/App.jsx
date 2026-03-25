@@ -15,14 +15,16 @@ function App() {
 
     setLoading(true);
     
+    const isTextMode = type === 'text';
+    
     // Perform immediate local analysis (Zero-Server fallback)
-    const localResult = type === 'text' 
+    const localResult = isTextMode 
       ? analyzeText(inputText)
       : analyzeText("I accidentally sent 200k more than the price. Please refund the balance to my brother's account ASAP.");
 
     try {
       let response;
-      if (type === 'text') {
+      if (isTextMode) {
         const url = `http://localhost:8000/scan/text?content=${encodeURIComponent(inputText)}`;
         response = await fetch(url, { method: 'POST' });
       } else {
@@ -76,7 +78,7 @@ function App() {
           }}
         />
 
-        <button className="btn-primary" onClick={handleScan}>
+        <button className="btn-primary" onClick={() => handleScan('text')}>
           {loading ? 'Analyzing...' : 'Scan for Risks'}
         </button>
       </main>
