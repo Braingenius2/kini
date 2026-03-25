@@ -1,0 +1,6 @@
+# Kini Test Case: Safe Inquiry
+
+"Hello! I saw your post about the vintage shoes. Are they still available? Also, do you offer delivery to Lekki Phase 1? Thank you!"
+
+---
+**Expected Kini Flag:** LOW RISK

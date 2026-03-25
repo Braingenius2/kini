@@ -86,8 +86,8 @@ function App() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <Shield color="#ba1a1a" />
             <h3>Analysis Result</h3>
-            <span className={`risk-badge risk-${scanResult.risk.toLowerCase()}`}>
-              {scanResult.risk} RISK
+            <span className={`risk-badge risk-${scanResult.risk_level?.toLowerCase() || 'low'}`}>
+              {scanResult.risk_level} RISK
             </span>
           </div>
 
@@ -104,7 +104,7 @@ function App() {
 
           <div className="suggestion" style={{ background: '#f9f1ff', padding: '1rem', borderRadius: '12px', borderLeft: '4px solid #6d28d9' }}>
             <p style={{ fontSize: '0.85rem', fontWeight: 600 }}>Shield Suggestion:</p>
-            <p style={{ fontSize: '0.85rem' }}>"{scanResult.suggestion}"</p>
+            <p style={{ fontSize: '0.85rem' }}>"{scanResult.suggestion || 'Proceed with caution and verify payment before shipping.'}"</p>
           </div>
         </section>
       )}
