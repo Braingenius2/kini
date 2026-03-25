@@ -1,10 +1,10 @@
-# Aya Shield Demo Script
+# Kini Demo Script
 
 Target length: 2-4 minutes
 
 ## Opening
 
-"Aya Shield is a digital safety assistant for women sellers who receive suspicious or abusive buyer messages through chat-based commerce."
+"Kini is a digital safety assistant for women sellers who receive suspicious or abusive buyer messages through chat-based commerce."
 
 ## Problem
 
@@ -14,15 +14,15 @@ Target length: 2-4 minutes
 
 1. Show the home screen or flowboard.
 2. Present a suspicious buyer chat screenshot.
-3. Upload or paste the chat into Aya Shield.
+3. Upload or paste the chat into Kini.
 4. Show the risk result and explain the trigger labels.
 5. Show the suggested safe reply.
 6. Show the evidence pack or trend panel.
 
 ## Data Science Callout
 
-"The system uses OCR to read screenshots, then applies message classification to identify scam and harassment patterns and explain the likely risk."
+"The system uses OCR to read screenshots, then applies a hybrid security engine to identify scam patterns. It even works offline by falling back to an internal JavaScript protection layer."
 
 ## Impact Close
 
-"Aya Shield makes digital selling safer, more confident, and more inclusive for women entrepreneurs who are building businesses in low-support digital spaces."
+"Kini makes digital selling safer, more confident, and more inclusive for women entrepreneurs who are building businesses in low-support digital spaces."

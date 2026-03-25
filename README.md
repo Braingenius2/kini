@@ -10,20 +10,20 @@ Women micro-entrepreneurs in Nigeria overwhelmingly use social media for busines
 ## The Solution (One-Page Brief)
 Kini is a **Digital Sanctuary** for these sellers. It acts as an "External Second Opinion"—providing a low-friction way to validate suspicious messages before responding. 
 
-### Why Aya Shield?
+### Why Kini?
 1. **Vertical Focus**: Optimized specifically for the nuances of Nigerian social-commerce scams.
 2. **Cognitive Buffer**: Forces a "pause" in high-pressure chat scenarios.
 3. **Structured Reporting**: Turns a chaotic chat into a structured "Evidence Pack" for banks and law enforcement.
 
 ## The "Day-in-the-Life" Workflow
 1. **Pause**: Receipt of a suspicious "overpayment" screenshot.
-2.  **Scan**: Screenshot is uploaded to Aya Shield.
+2.  **Scan**: Screenshot is uploaded to Kini.
 3. **Insight**: Analysis flags `Fake Overpayment` and `Urgent Tone`.
 4. **Respond**: Seller is given a polite, firm template to send back, ending the fraud attempt instantly.
 
 ## Key Features
 - **OCR Scan**: Extract text from WhatsApp/IG screenshots.
-- **NLP Risk Analysis**: Detects `Fake Overpayment`, `Fake Urgency`, and `Off-Platform` prompts.
+- **Hybrid NLP Risk Analysis**: Detects `Fake Overpayment`, `Fake Urgency`, and `Off-Platform` prompts using a dual-mode engine (Python/JS).
 - **Shield Suggestion**: Proposes a non-confrontational safe response to suspicious buyers.
 - **Evidence Pack**: Generates a structured log for reporting fraud to banks or authorities.
 
