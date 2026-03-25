@@ -16,7 +16,7 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"message": "Aya Shield API is active"}
+    return {"message": "Kini API is active"}
 
 @app.post("/scan/text")
 async def scan_text(content: str):
