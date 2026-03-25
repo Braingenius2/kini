@@ -1,49 +1,71 @@
-import React, { useState } from 'react';
-import { Camera, Shield, MessageSquare, AlertTriangle } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Camera, Shield, MessageSquare, AlertTriangle, Loader2 } from 'lucide-react';
 import { analyzeText } from './utils/analyzer';
+import Tesseract from 'tesseract.js';
 
 function App() {
   const [scanResult, setScanResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [inputText, setInputText] = useState('');
+  const [status, setStatus] = useState('');
+  const fileInputRef = useRef(null);
 
-  const handleScan = async (type = 'text') => {
-    if (type === 'text' && !inputText.trim()) {
+  const handleScan = async (type = 'text', customText = null) => {
+    const textToScan = customText || inputText;
+    
+    if (type === 'text' && !textToScan.trim()) {
       alert("Please paste some text to scan.");
       return;
     }
 
     setLoading(true);
+    setStatus('Analyzing patterns...');
     
     const isTextMode = type === 'text';
     
     // Perform immediate local analysis (Zero-Server fallback)
-    const localResult = isTextMode 
-      ? analyzeText(inputText)
-      : analyzeText("I accidentally sent 200k more than the price. Please refund the balance to my brother's account ASAP.");
+    const localResult = analyzeText(textToScan);
 
     try {
       let response;
       if (isTextMode) {
-        const url = `http://localhost:8000/scan/text?content=${encodeURIComponent(inputText)}`;
+        const url = `http://localhost:8000/scan/text?content=${encodeURIComponent(textToScan)}`;
         response = await fetch(url, { method: 'POST' });
       } else {
         response = await fetch('http://localhost:8000/scan/image', { method: 'POST' });
       }
 
-      if (response.ok) {
+      if (response && response.ok) {
         const data = await response.json();
         setScanResult(data);
       } else {
-        // Backend not found (ideal for Showcase demo on GitHub Pages)
         setScanResult(localResult);
       }
     } catch (error) {
-      // Offline mode
       console.log("Using internal Kini engine (Offline Mode)");
       setScanResult(localResult);
     } finally {
       setLoading(false);
+      setStatus('');
+    }
+  };
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setLoading(true);
+    setStatus('Reading image (OCR)...');
+    
+    try {
+      const { data: { text } } = await Tesseract.recognize(file, 'eng');
+      console.log("OCR Extracted:", text);
+      handleScan('text', text);
+    } catch (err) {
+      console.error("OCR Error:", err);
+      alert("Failed to read image. Please try typing the text.");
+      setLoading(false);
+      setStatus('');
     }
   };
 
@@ -55,10 +77,21 @@ function App() {
       </header>
 
       <main className="sanctuary-card">
-        <div className="upload-zone" onClick={() => handleScan('image')}>
-          <Camera size={48} color="#6d28d9" style={{ marginBottom: '1rem' }} />
+        <input 
+          type="file" 
+          ref={fileInputRef} 
+          style={{ display: 'none' }} 
+          accept="image/*"
+          onChange={handleFileUpload}
+        />
+        <div className="upload-zone" onClick={() => fileInputRef.current.click()}>
+          {loading && status.includes('OCR') ? (
+            <Loader2 size={48} className="animate-spin" color="#6d28d9" style={{ marginBottom: '1rem' }} />
+          ) : (
+            <Camera size={48} color="#6d28d9" style={{ marginBottom: '1rem' }} />
+          )}
           <h3>Upload Chat Screenshot</h3>
-          <p>We'll look for scams and red flags</p>
+          <p>{status || "We'll look for scams and red flags"}</p>
         </div>
 
         <div style={{ textAlign: 'center', color: '#ccc' }}>— OR —</div>
@@ -78,8 +111,13 @@ function App() {
           }}
         />
 
-        <button className="btn-primary" onClick={() => handleScan('text')}>
-          {loading ? 'Analyzing...' : 'Scan for Risks'}
+        <button className="btn-primary" onClick={() => handleScan('text')} disabled={loading}>
+          {loading ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'center' }}>
+              <Loader2 size={18} className="animate-spin" />
+              {status || 'Analyzing...'}
+            </div>
+          ) : 'Scan for Risks'}
         </button>
       </main>
 

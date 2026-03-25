@@ -1,6 +1,9 @@
-# Kini Test Case: Fake Overpayment Scam
+# Kini Test Case: High-Risk Scam (Fake Overpayment)
 
 "Hi, I'm interested in the bag. I just sent the money via bank transfer, but oh no! I accidentally sent 150,000 Naira instead of 15,000. I am so sorry, I was in a hurry. Please REFUND the balance of 135,000 to my brother's account IMMEDIATELY. My bank is already pending the reversal. HURRY!"
 
 ---
-**Expected Kini Flag:** HIGH RISK (Fake Overpayment, Urgent Tone, Suspicious Payment)
+**Why this is HIGH RISK:**
+- **Fake Overpayment**: "accidentally sent", "reversal"
+- **Urgent Tone**: "IMMEDIATELY", "HURRY"
+- **Suspicious Payment**: "brother's account"
